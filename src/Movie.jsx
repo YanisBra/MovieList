@@ -150,6 +150,7 @@ const CardDiv = styled.div`
     border: none;
     padding: 0;
     cursor: pointer;
+    outline: none;
   }
   & .menu-content span {
     position: absolute;
