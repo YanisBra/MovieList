@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <StyledNavbar>
       <a className="content" onClick={scrollToTop}>
-        <img src="/public/images/Popcorn.svg" alt="logo" />
+        <img src="/images/Popcorn.svg" alt="logo" />
         <p>PopCorn</p>
       </a>
     </StyledNavbar>

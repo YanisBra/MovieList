@@ -113,6 +113,7 @@ Movie.propTypes = {
 const CardDiv = styled.div`
   float: left;
   padding: 1.7rem;
+  margin: auto;
 
   & a {
     text-decoration: none;
