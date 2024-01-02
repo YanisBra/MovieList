@@ -112,14 +112,6 @@ const CardDiv = styled.div`
     float: right;
   }
 
-  & .menu-content::before,
-  & .menu-content::after {
-    content: "";
-    display: table;
-  }
-  & .menu-content::after {
-    clear: both;
-  }
   & .menu-content li {
     display: inline-block;
     margin: 0 5px;
@@ -213,16 +205,8 @@ const CardDiv = styled.div`
     margin: 0;
     padding: 16px;
     overflow: hidden;
-    overflow-y: auto; /* Ajoute une barre de défilement vertical si nécessaire */
-    text-overflow: ellipsis; /* Ajoute les points de suspension */
-  }
-
-  & input[type="checkbox"] {
-    display: none;
-  }
-  & input[type="checkbox"]:checked + .menu-content {
-    -webkit-transform: translateY(-60px);
-    transform: translateY(-60px);
+    overflow-y: auto;
+    text-overflow: ellipsis;
   }
 
   & .header {
@@ -241,22 +225,6 @@ const CardDiv = styled.div`
     float: left;
     font-weight: bold;
     font-size: 12px;
-  }
-
-  & .button {
-    display: block;
-    width: 100px;
-    margin: 6em auto 1em;
-    text-align: center;
-    font-size: 12px;
-    color: #fff;
-    line-height: 1;
-    position: relative;
-    font-weight: 700;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `;
 
