@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Footer() {
   return (
     <FooterDiv>
-      <p>Yanis Brahimi © 2023</p>
+      <p>Yanis Brahimi © 2024</p>
     </FooterDiv>
   );
 }

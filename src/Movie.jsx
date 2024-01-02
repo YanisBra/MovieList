@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 const Movie = ({
-  id,
   title,
   date,
   category,
@@ -13,7 +12,6 @@ const Movie = ({
   bookmark,
   trailer,
   image,
-  dispatch,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(bookmark);
@@ -29,58 +27,48 @@ const Movie = ({
   };
 
   return (
-    <CardDiv image={image}>
-      <div className="orga">
-        <div
-          className="wrapper"
-          // style={{
-          //   backgroundImage: `url(https://image.tmdb.org/t/p/w500${image})`,
-          // }}
-        >
-          <img src={`https://image.tmdb.org/t/p/w500${image}`} alt="posters" />
-
-          <div className="header">
-            <div className="date">
-              <span>{date}</span>
-              {/* <span className="day">{day}</span>
-            <span className="month">{month}</span>
-            <span className="year">{year}</span> */}
-            </div>
-            <ul className="menu-content">
-              <li>
-                <button
-                  onClick={() => setIsBookmarked(!isBookmarked)}
-                  className={[
-                    "fa",
-                    isBookmarked ? "fa-bookmark" : "fa-bookmark-o",
-                  ].join(" ")}
-                  style={{ color: isBookmarked ? "#FFBF4D" : "" }}
-                />
-              </li>
-              <li>
-                <button
-                  onClick={handleLike}
-                  className={["fa", isLiked ? "fa-heart" : "fa-heart-o"].join(
-                    " "
-                  )}
-                  style={{ color: isLiked ? "#F91980" : "" }}
-                ></button>
-
-                <span>{likesCount}</span>
-              </li>
-              <li>
-                <button className="fa fa-comment-o">
-                  <span>{comment}</span>
-                </button>
-              </li>
-            </ul>
+    <CardDiv>
+      <div className="wrapper">
+        <img src={`https://image.tmdb.org/t/p/w500${image}`} alt="posters" />
+        <div className="header">
+          <div className="date">
+            <span>{date}</span>
           </div>
-          <div className="data">
-            <div className="content">
-              <span className="author">{category}</span>
-              <h1 className="title">{title}</h1>
-              <p className="text">{resume}</p>
-              {/* <a
+          <ul className="menu-content">
+            <li>
+              <button
+                onClick={() => setIsBookmarked(!isBookmarked)}
+                className={[
+                  "fa",
+                  isBookmarked ? "fa-bookmark" : "fa-bookmark-o",
+                ].join(" ")}
+                style={{ color: isBookmarked ? "#FFBF4D" : "" }}
+              />
+            </li>
+            <li>
+              <button
+                onClick={handleLike}
+                className={["fa", isLiked ? "fa-heart" : "fa-heart-o"].join(
+                  " "
+                )}
+                style={{ color: isLiked ? "#F91980" : "" }}
+              ></button>
+
+              <span>{likesCount}</span>
+            </li>
+            <li>
+              <button className="fa fa-comment-o">
+                <span>{comment}</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div className="data">
+          <div className="content">
+            {/* <span className="author">{category}</span> */}
+            <h1 className="title">{title}</h1>
+            <p className="text">{resume}</p>
+            {/* <a
               href={trailer}
               target="_blank"
               rel="noreferrer"
@@ -88,7 +76,6 @@ const Movie = ({
             >
               Trailer
             </a> */}
-            </div>
           </div>
         </div>
       </div>
@@ -97,7 +84,6 @@ const Movie = ({
 };
 
 Movie.propTypes = {
-  id: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
   category: PropTypes.string,
@@ -117,11 +103,6 @@ const CardDiv = styled.div`
 
   & a {
     text-decoration: none;
-  }
-
-  & h1 {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 300;
   }
 
   & .menu-content {
@@ -191,16 +172,11 @@ const CardDiv = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    transition: filter 0.3s; /* Ajoute une transition pour une animation fluide */
+    transition: filter 0.3s;
   }
 
   .wrapper:hover img {
-    filter: blur(5px) brightness(0.7); /* Ajout de l'effet sombre avec une luminosité réduite */
-  }
-
-  .orga {
-    display: flex;
-    flex-direction: column;
+    filter: blur(5px) brightness(0.7);
   }
 
   .header {
@@ -214,13 +190,13 @@ const CardDiv = styled.div`
     margin-top: auto;
     margin-bottom: 0;
     padding: 1em;
-    opacity: 0; // Rend la div invisible par défaut
-    transition: opacity 0.3s; // Ajoute une transition pour une animation fluide
+    opacity: 0;
+    transition: opacity 0.3s;
     z-index: 1;
   }
 
   .wrapper:hover .data {
-    opacity: 1; // Rend la div visible lors du survol
+    opacity: 1;
   }
 
   & .title {
@@ -231,10 +207,14 @@ const CardDiv = styled.div`
   }
 
   .text {
-    margin-top: auto; // Positionne le texte en bas de la div .data
+    margin-top: auto;
     height: 100%;
+    max-height: 320px;
     margin: 0;
     padding: 16px;
+    overflow: hidden;
+    overflow-y: auto; /* Ajoute une barre de défilement vertical si nécessaire */
+    text-overflow: ellipsis; /* Ajoute les points de suspension */
   }
 
   & input[type="checkbox"] {

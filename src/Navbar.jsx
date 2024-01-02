@@ -4,7 +4,7 @@ const Navbar = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Ajoute un effet de défilement fluide
+      behavior: "smooth",
     });
   };
 
